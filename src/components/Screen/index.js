@@ -26,5 +26,5 @@ const styles = StyleSheet.create({
 
 Screen.propTypes = {
   style: PropTypes.object,
-  children: PropTypes.array
+  children: PropTypes.any // dynamic data, can be object or array
 };

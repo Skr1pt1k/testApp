@@ -17,6 +17,10 @@ export default StyleSheet.create({
     fontSize: RFValue(16),
     fontWeight: '600'
   },
+  itemLittle: {
+    fontSize: RFValue(14),
+    color: grey
+  },
   pageTitle: {
     alignSelf: 'center',
     margin: RFValue(30),
