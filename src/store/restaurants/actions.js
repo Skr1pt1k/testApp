@@ -12,5 +12,7 @@ export const restaurantsActions = {
   setResponsesRequest: (responseId) => ({type: restaurantsConstants.SET_RESPONSES_REQUEST, responseId}),
   setResponsesSuccess: (responses) => ({type: restaurantsConstants.SET_RESPONSES_SUCCESS, responses}),
 
-  unsetResponsesSuccess: () => ({type: restaurantsConstants.UNSET_RESPONSES_SUCCESS})
+  unsetResponsesSuccess: () => ({type: restaurantsConstants.UNSET_RESPONSES_SUCCESS}),
+
+  setViewedResponse: (viewedId) => ({type: restaurantsConstants.SET_VIEWED_RESPONSE_SUCCESS, viewedId})
 };

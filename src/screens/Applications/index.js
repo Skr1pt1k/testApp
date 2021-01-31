@@ -12,7 +12,7 @@ export const ApplicationsScreen = ({route, navigation}) => {
   const restaurantId = route.params.restaurantId || null;
   const dispatch = useDispatch();
 
-  const {applications} = useSelector(state => state.restaurants);
+  const {applications, viewedResponses} = useSelector(state => state.restaurants);
 
   useEffect(() => {
     dispatch(restaurantsActions.setRestaurantApplication(restaurantId));
@@ -30,8 +30,11 @@ export const ApplicationsScreen = ({route, navigation}) => {
     const {firstname, lastname, position, id} = value.item;
     const fullName = `${ firstname } ${ lastname }`;
 
+    const isViewed = viewedResponses.find(el => el.id === id);
+
     return (
       <TouchableOpacity style={{...styles.itemWrapper, ...styles.alignStart}} onPress={() => handleNavigateResponses(id)}>
+        {isViewed && <Text style={styles.viewedApplication}>Viewed!</Text>}
         <Row centered>
           <Text style={styles.itemLabel}>Full name: </Text>
           <Text style={{...styles.itemLabel, ...styles.itemLittle}}>{fullName}</Text>

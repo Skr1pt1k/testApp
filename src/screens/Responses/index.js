@@ -16,6 +16,7 @@ export const ResponsesScreen = ({route, navigation}) => {
 
   useEffect(() => {
     dispatch(restaurantsActions.setResponsesRequest(responseId));
+    dispatch(restaurantsActions.setViewedResponse(responseId));
 
     return () => {
       dispatch(restaurantsActions.unsetResponsesSuccess());

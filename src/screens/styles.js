@@ -29,5 +29,11 @@ export default StyleSheet.create({
   },
   alignStart: {
     alignItems: 'flex-start'
+  },
+  viewedApplication: {
+    paddingBottom: RFValue(10),
+    alignSelf: 'center',
+    fontSize: RFValue(14),
+    color: 'green'
   }
 });
