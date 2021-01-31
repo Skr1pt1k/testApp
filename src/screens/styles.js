@@ -26,5 +26,8 @@ export default StyleSheet.create({
     margin: RFValue(30),
     fontSize: RFValue(20),
     fontWeight: 'bold'
+  },
+  alignStart: {
+    alignItems: 'flex-start'
   }
 });

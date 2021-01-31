@@ -16,6 +16,39 @@ function *fetch() {
   }
 }
 
+function *setResponses({responseId}) {
+  try {
+    const response = dummyData.find((res) => res.id === responseId);
+
+    const {fields} = response.form_response.definition;
+    const {answers} = response.form_response;
+
+    const responsesArray = fields.map(field => {
+      const answer = answers.find((el) => el.field.id === field.id);
+
+      let parsedAnswer = 'No data available';
+
+      if (answer.type === 'choice') {
+        parsedAnswer = answer.choice.label;
+      }
+      if (answer.type === 'choices') {
+        parsedAnswer = answer.choices.labels.join(', ');
+      }
+
+      return {
+        id: field.id,
+        question: field.title,
+        answer: parsedAnswer,
+        type: field.type
+      };
+    });
+
+    yield put(restaurantsActions.setResponsesSuccess(responsesArray));
+  } catch (e) {
+    yield put(console.warn('Error!'));
+  }
+}
+
 function *setRestaurantApplication({restaurantId}) {
   try {
     const restaurantApplication = dummyData.filter((response) => response.restaurant.id === restaurantId);
@@ -44,5 +77,5 @@ function *setRestaurantApplication({restaurantId}) {
 export function *restaurantsSaga() {
   yield takeLatest(restaurantsConstants.GET_RESTAURANTS_REQUEST, fetch);
   yield takeLatest(restaurantsConstants.SET_RESTAURANT_APPLICATIONS_REQUEST, setRestaurantApplication);
-
+  yield takeLatest(restaurantsConstants.SET_RESPONSES_REQUEST, setResponses);
 }

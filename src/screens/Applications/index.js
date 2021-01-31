@@ -16,19 +16,27 @@ export const ApplicationsScreen = ({route, navigation}) => {
 
   useEffect(() => {
     dispatch(restaurantsActions.setRestaurantApplication(restaurantId));
+
+    return () => {
+      dispatch(restaurantsActions.unsetRestaurantApplicationSuccess());
+    };
   }, []);
 
+  const handleNavigateResponses = (responseId) => {
+    navigation.navigate('Responses', {responseId});
+  };
+
   const renderItem = (value) => {
-    const {firstname, lastname, position} = value.item;
+    const {firstname, lastname, position, id} = value.item;
     const fullName = `${ firstname } ${ lastname }`;
 
     return (
-      <TouchableOpacity style={{...styles.itemWrapper, alignItems: 'flex-start'}}>
+      <TouchableOpacity style={{...styles.itemWrapper, ...styles.alignStart}} onPress={() => handleNavigateResponses(id)}>
         <Row centered>
           <Text style={styles.itemLabel}>Full name: </Text>
           <Text style={{...styles.itemLabel, ...styles.itemLittle}}>{fullName}</Text>
         </Row>
-        <Row centered style={{flexWrap: 'wrap'}}>
+        <Row centered wrap>
           <Text style={styles.itemLabel}>Position: </Text>
           <Text style={{...styles.itemLabel, ...styles.itemLittle}}>{position}</Text>
         </Row>
